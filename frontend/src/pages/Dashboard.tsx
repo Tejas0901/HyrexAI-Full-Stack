@@ -7,6 +7,7 @@ import SpeechToText from "@/components/dashboard/SpeechToText";
 import TextToSpeech from "@/components/dashboard/TextToSpeech";
 import ResumeScreening from "@/components/dashboard/ResumeScreening";
 import ApiKeys from "@/components/dashboard/ApiKeys";
+import Billing from "@/components/dashboard/Billing";
 import { Users, MessageSquare } from "lucide-react";
 
 const PAGE_TITLES: Record<DashboardTab, string> = {
@@ -17,6 +18,7 @@ const PAGE_TITLES: Record<DashboardTab, string> = {
   "matching": "Candidate Matching",
   "interview": "Interview Insights",
   "api-keys": "API Keys",
+  "billing": "Billing & Subscription",
 };
 
 const ComingSoon = ({ title, icon: Icon }: { title: string; icon: React.ElementType }) => (
@@ -62,6 +64,7 @@ const Dashboard = () => {
       case "text-to-speech": return <TextToSpeech />;
       case "resume":         return <ResumeScreening />;
       case "api-keys":       return <ApiKeys />;
+      case "billing":        return <Billing />;
       case "matching":       return <ComingSoon title="Candidate Matching" icon={Users} />;
       case "interview":      return <ComingSoon title="Interview Insights" icon={MessageSquare} />;
     }

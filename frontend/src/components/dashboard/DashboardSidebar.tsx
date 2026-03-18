@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import {
   LayoutDashboard, Mic, Volume2, FileSearch, Users, MessageSquare,
-  Key, LogOut, Sun, Moon, Menu, X, ChevronRight,
+  Key, LogOut, Sun, Moon, Menu, X, ChevronRight, CreditCard,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export type DashboardTab =
   | "overview"
@@ -13,7 +13,8 @@ export type DashboardTab =
   | "resume"
   | "matching"
   | "interview"
-  | "api-keys";
+  | "api-keys"
+  | "billing";
 
 const navItems = [
   { id: "overview" as DashboardTab, label: "Overview", icon: LayoutDashboard },
@@ -23,6 +24,7 @@ const navItems = [
   { id: "matching" as DashboardTab, label: "Candidate Matching", icon: Users, soon: true },
   { id: "interview" as DashboardTab, label: "Interview Insights", icon: MessageSquare, soon: true },
   { id: "api-keys" as DashboardTab, label: "API Keys", icon: Key },
+  { id: "billing" as DashboardTab, label: "Billing", icon: CreditCard },
 ];
 
 interface Props {
@@ -121,7 +123,6 @@ const DashboardSidebar = ({ activeTab, onTabChange }: Props) => {
       <div className="px-3 py-4 border-t border-gray-200 dark:border-gray-800 flex-shrink-0">
         <div className="flex items-center gap-3 px-2 py-2 rounded-lg">
           <Avatar className="h-8 w-8 flex-shrink-0">
-            <AvatarImage src={user?.avatar} />
             <AvatarFallback className="bg-blue-100 dark:bg-blue-950 text-primary text-xs font-bold">
               {initials}
             </AvatarFallback>
