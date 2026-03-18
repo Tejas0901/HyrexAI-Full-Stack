@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 71% 4%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 224 71% 4%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 221 83% 53%;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 221 83% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 213 31% 91%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 215 16% 55%;
+
+    --accent: 221 83% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 47% 14%;
+    --input: 222 47% 14%;
+    --ring: 221 83% 60%;
+
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 213 31% 91%;
+    --sidebar-primary: 221 83% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 12%;
+    --sidebar-accent-foreground: 213 31% 91%;
+    --sidebar-border: 222 47% 14%;
+    --sidebar-ring: 221 83% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Clean white card with subtle border and shadow */
+  .clean-card {
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(220 13% 91%);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.05), 0 1px 2px rgb(0 0 0 / 0.04);
+  }
+
+  /* Backward-compat alias: glass-card → clean card */
+  .glass-card {
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(220 13% 91%);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.05), 0 1px 2px rgb(0 0 0 / 0.04);
+  }
+
+  /* gradient-text → solid blue */
+  .gradient-text {
+    color: hsl(var(--primary));
+    -webkit-text-fill-color: hsl(var(--primary));
+  }
+
+  /* gradient-border → simple border */
+  .gradient-border {
+    border: 1px solid hsl(220 13% 91%);
+    border-radius: var(--radius);
+  }
+  .gradient-border::before {
+    display: none;
+  }
+
+  /* Primary solid button */
+  .btn-primary {
+    background: hsl(var(--primary));
+    color: white;
+    font-weight: 500;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover {
+    background: hsl(221 83% 46%);
+    box-shadow: 0 4px 14px hsl(221 83% 53% / 0.25);
+    transform: translateY(-1px);
+  }
+
+  /* Outline button */
+  .btn-outline {
+    background: transparent;
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    font-weight: 500;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-outline:hover {
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+    transform: translateY(-1px);
+  }
+
+  /* Backward-compat: btn-gradient → solid blue */
+  .btn-gradient {
+    background: hsl(var(--primary));
+    color: white;
+    font-weight: 500;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  .btn-gradient:hover {
+    background: hsl(221 83% 46%);
+    box-shadow: 0 4px 14px hsl(221 83% 53% / 0.25);
+    transform: translateY(-1px);
+  }
+
+  /* Backward-compat: btn-glass → outline */
+  .btn-glass {
+    background: transparent;
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    font-weight: 500;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-glass:hover {
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary));
+    transform: translateY(-1px);
+  }
+
+  /* No-op: remove glow effects */
+  .glow-effect { box-shadow: none; }
+  .glow-accent { box-shadow: none; }
+
+  /* Dark mode card overrides */
+  .dark .clean-card,
+  .dark .glass-card {
+    background: hsl(222 47% 8%);
+    border-color: hsl(222 47% 14%);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.3), 0 1px 2px rgb(0 0 0 / 0.2);
+  }
+
+  .dark .gradient-border {
+    border-color: hsl(222 47% 14%);
+  }
+}
+
+@layer utilities {
+  /* Logo carousel */
+  .animate-carousel {
+    animation: carousel-scroll 30s linear infinite;
+  }
+
+  .carousel-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  /* Cursor blink for hero demo */
+  .animate-glow-pulse {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  /* Float kept but softer */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+  .animate-float-slow {
+    animation: float 8s ease-in-out 1s infinite;
+  }
+}
+
+@keyframes carousel-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}

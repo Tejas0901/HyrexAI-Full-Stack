@@ -1,0 +1,21 @@
+# Include base requirements
+-r requirements.txt
+
+# Development Tools
+pre-commit==4.0.1
+
+# Testing
+pytest-xdist==3.6.1
+factory-boy==3.3.1
+faker==30.8.2
+
+# Debugging
+ipdb==0.13.13
+ipython==8.29.0
+
+# Documentation
+mkdocs==1.6.1
+mkdocs-material==9.5.44
+
+# Performance Profiling
+memray==1.14.0
