@@ -65,6 +65,22 @@ services:
         condition: service_healthy
     restart: "no"
 
+  # Seed test users (one-shot, runs after migrations)
+  seed:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    command: ["python", "-m", "app.scripts.seed_test_user"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    restart: "no"
+
   # React Frontend (served via nginx)
   frontend:
     build:
