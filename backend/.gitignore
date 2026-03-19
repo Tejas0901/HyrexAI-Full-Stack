@@ -67,6 +67,9 @@ dmypy.json
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Media (TTS generated files)
+media/
+
 # OS
 .DS_Store
 Thumbs.db

@@ -77,6 +77,17 @@ class Settings(BaseSettings):
     default_page_size: int = Field(default=20, alias="DEFAULT_PAGE_SIZE")
     max_page_size: int = Field(default=100, alias="MAX_PAGE_SIZE")
 
+    # TTS / Modal Settings
+    modal_tts_endpoint_url: str = Field(
+        default="http://localhost:8080/tts",
+        alias="MODAL_TTS_ENDPOINT_URL",
+    )
+    modal_tts_api_key: str = Field(default="", alias="MODAL_TTS_API_KEY")
+    tts_media_dir: str = Field(default="media/tts", alias="TTS_MEDIA_DIR")
+    tts_request_timeout: int = Field(
+        default=60, alias="TTS_REQUEST_TIMEOUT"
+    )
+
     @computed_field
     @property
     def async_database_url(self) -> str:
