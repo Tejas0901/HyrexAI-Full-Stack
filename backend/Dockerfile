@@ -21,6 +21,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     curl \
+    ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy installed Python packages from builder
@@ -30,7 +31,7 @@ COPY --from=builder /install /usr/local
 COPY . .
 
 # Create directories for logs and media
-RUN mkdir -p logs media/tts
+RUN mkdir -p logs media/tts media/voice_clone
 
 # Create non-root user
 RUN adduser --disabled-password --gecos "" appuser && \

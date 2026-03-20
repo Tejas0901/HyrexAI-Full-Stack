@@ -15,6 +15,11 @@ from app.api.v1.api import api_router
 from app.db.session import engine
 from app.db.base import Base
 
+# Import all models so Base.metadata knows about them
+from app.models.user import User  # noqa: F401
+from app.models.tts import TTSGeneration  # noqa: F401
+from app.models.voice_clone import VoiceCloneSynthesis  # noqa: F401
+
 settings = get_settings()
 logger = get_logger(__name__)
 
@@ -32,12 +37,12 @@ async def lifespan(app: FastAPI):
         f"in {settings.environment} mode"
     )
 
-    # Create database tables (for development only, use Alembic in production)
-    if settings.is_development:
+    # Try to create missing tables (non-fatal if DB is unavailable)
+    try:
         async with engine.begin() as conn:
-            # Uncomment to auto-create tables (not recommended for production)
-            # await conn.run_sync(Base.metadata.create_all)
-            pass
+            await conn.run_sync(Base.metadata.create_all)
+    except Exception as e:
+        logger.warning(f"Could not auto-create tables (DB may be unavailable): {e}")
 
     yield
 

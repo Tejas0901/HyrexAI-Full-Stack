@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  LayoutDashboard, Mic, Volume2, FileSearch, Users, MessageSquare,
+  LayoutDashboard, Mic, Volume2, AudioLines, FileSearch, Users, MessageSquare,
   Key, LogOut, Sun, Moon, Menu, X, ChevronRight, CreditCard,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -10,6 +10,7 @@ export type DashboardTab =
   | "overview"
   | "speech-to-text"
   | "text-to-speech"
+  | "voice-clone"
   | "resume"
   | "matching"
   | "interview"
@@ -20,6 +21,7 @@ const navItems = [
   { id: "overview" as DashboardTab, label: "Overview", icon: LayoutDashboard },
   { id: "speech-to-text" as DashboardTab, label: "Speech to Text", icon: Mic },
   { id: "text-to-speech" as DashboardTab, label: "Text to Speech", icon: Volume2 },
+  { id: "voice-clone" as DashboardTab, label: "Voice Clone", icon: AudioLines },
   { id: "resume" as DashboardTab, label: "Resume Screening", icon: FileSearch },
   { id: "matching" as DashboardTab, label: "Candidate Matching", icon: Users, soon: true },
   { id: "interview" as DashboardTab, label: "Interview Insights", icon: MessageSquare, soon: true },

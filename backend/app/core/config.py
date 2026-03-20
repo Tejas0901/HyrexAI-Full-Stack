@@ -42,7 +42,7 @@ class Settings(BaseSettings):
 
     # CORS Settings
     cors_origins: str = Field(
-        default="http://localhost:3000,http://localhost:5173",
+        default="http://localhost,http://localhost:80,http://localhost:3000,http://localhost:5173,http://localhost:8080",
         alias="CORS_ORIGINS",
     )
     cors_allow_credentials: bool = Field(
@@ -52,7 +52,7 @@ class Settings(BaseSettings):
         alias="CORS_ALLOW_METHODS",
     )
     cors_allow_headers: str = Field(
-        default="Content-Type,Authorization,X-Requested-With",
+        default="*",
         alias="CORS_ALLOW_HEADERS",
     )
 

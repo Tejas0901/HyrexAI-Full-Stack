@@ -6,6 +6,7 @@ import DashboardHome from "@/components/dashboard/DashboardHome";
 import SpeechToText from "@/components/dashboard/SpeechToText";
 import TextToSpeech from "@/components/dashboard/TextToSpeech";
 import ResumeScreening from "@/components/dashboard/ResumeScreening";
+import VoiceClone from "@/components/dashboard/VoiceClone";
 import ApiKeys from "@/components/dashboard/ApiKeys";
 import Billing from "@/components/dashboard/Billing";
 import { Users, MessageSquare } from "lucide-react";
@@ -14,6 +15,7 @@ const PAGE_TITLES: Record<DashboardTab, string> = {
   "overview": "Overview",
   "speech-to-text": "Speech to Text",
   "text-to-speech": "Text to Speech",
+  "voice-clone": "Voice Clone",
   "resume": "Resume Screening",
   "matching": "Candidate Matching",
   "interview": "Interview Insights",
@@ -62,6 +64,7 @@ const Dashboard = () => {
       case "overview":       return <DashboardHome onTabChange={setActiveTab} />;
       case "speech-to-text": return <SpeechToText />;
       case "text-to-speech": return <TextToSpeech />;
+      case "voice-clone":    return <VoiceClone />;
       case "resume":         return <ResumeScreening />;
       case "api-keys":       return <ApiKeys />;
       case "billing":        return <Billing />;

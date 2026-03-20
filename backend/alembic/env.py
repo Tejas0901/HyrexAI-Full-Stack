@@ -17,6 +17,7 @@ from app.db.base import Base
 # Import all models here for Alembic to detect
 from app.models.user import User  # noqa: F401
 from app.models.tts import TTSGeneration  # noqa: F401
+from app.models.voice_clone import VoiceCloneSynthesis  # noqa: F401
 
 settings = get_settings()
 
