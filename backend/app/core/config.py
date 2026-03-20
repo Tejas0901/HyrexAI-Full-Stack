@@ -42,7 +42,7 @@ class Settings(BaseSettings):
 
     # CORS Settings
     cors_origins: str = Field(
-        default="http://localhost:3000,http://localhost:5173",
+        default="http://localhost,http://localhost:80,http://localhost:3000,http://localhost:5173,http://localhost:8080",
         alias="CORS_ORIGINS",
     )
     cors_allow_credentials: bool = Field(
@@ -52,7 +52,7 @@ class Settings(BaseSettings):
         alias="CORS_ALLOW_METHODS",
     )
     cors_allow_headers: str = Field(
-        default="Content-Type,Authorization,X-Requested-With",
+        default="*",
         alias="CORS_ALLOW_HEADERS",
     )
 
@@ -76,6 +76,17 @@ class Settings(BaseSettings):
     # Pagination Defaults
     default_page_size: int = Field(default=20, alias="DEFAULT_PAGE_SIZE")
     max_page_size: int = Field(default=100, alias="MAX_PAGE_SIZE")
+
+    # TTS / Modal Settings
+    modal_tts_endpoint_url: str = Field(
+        default="http://localhost:8080/tts",
+        alias="MODAL_TTS_ENDPOINT_URL",
+    )
+    modal_tts_api_key: str = Field(default="", alias="MODAL_TTS_API_KEY")
+    tts_media_dir: str = Field(default="media/tts", alias="TTS_MEDIA_DIR")
+    tts_request_timeout: int = Field(
+        default=60, alias="TTS_REQUEST_TIMEOUT"
+    )
 
     @computed_field
     @property

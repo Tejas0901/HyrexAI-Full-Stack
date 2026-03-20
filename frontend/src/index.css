@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Suppress all transitions on initial load to prevent dark mode flash */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition-duration: 0s !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:dashboard.sarvam.ai)"
+      "WebFetch(domain:dashboard.sarvam.ai)",
+      "Bash(docker compose:*)",
+      "Bash(curl -sv http://localhost:80/api/v1/health)",
+      "Bash(curl -sL http://localhost:80/api/v1/health/)"
     ]
   }
 }

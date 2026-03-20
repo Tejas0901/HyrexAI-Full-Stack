@@ -29,9 +29,10 @@ const Hero = () => {
   const [analyzeProgress, setAnalyzeProgress] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const phaseRef = useRef<DemoPhase>("idle");
 
-  const startDemo = () => {
-    if (phase !== "idle") return;
+  const runAnimation = () => {
+    phaseRef.current = "typing";
     setPhase("typing");
     setTypedInput("");
     setAnalyzeProgress(0);
@@ -44,6 +45,7 @@ const Hero = () => {
       if (i >= EXAMPLE_INPUT.length) {
         clearInterval(intervalRef.current);
         setTimeout(() => {
+          phaseRef.current = "analyzing";
           setPhase("analyzing");
           let p = 0;
           const analyzeInt = setInterval(() => {
@@ -51,6 +53,7 @@ const Hero = () => {
             setAnalyzeProgress(Math.min(p, 100));
             if (p >= 100) {
               clearInterval(analyzeInt);
+              phaseRef.current = "results";
               setPhase("results");
               setShowResults(true);
             }
@@ -61,18 +64,20 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    if (isInView && phase === "idle") {
-      const t = setTimeout(startDemo, 1200);
+    if (isInView && phaseRef.current === "idle") {
+      const t = setTimeout(runAnimation, 1200);
       return () => clearTimeout(t);
     }
   }, [isInView]);
 
   const resetDemo = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    phaseRef.current = "idle";
     setPhase("idle");
     setTypedInput("");
     setAnalyzeProgress(0);
     setShowResults(false);
-    setTimeout(startDemo, 600);
+    setTimeout(runAnimation, 600);
   };
 
   return (

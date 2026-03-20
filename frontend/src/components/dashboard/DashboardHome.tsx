@@ -1,4 +1,4 @@
-import { Mic, Volume2, FileSearch, Key, TrendingUp, Activity, Zap, ArrowRight } from "lucide-react";
+import { Mic, Volume2, AudioLines, FileSearch, Key, TrendingUp, Activity, Zap, ArrowRight } from "lucide-react";
 import type { DashboardTab } from "./DashboardSidebar";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -22,6 +22,13 @@ const quickStart = [
     title: "Text to Speech",
     desc: "Convert text to natural-sounding audio with multiple voices.",
     color: "bg-violet-50 dark:bg-violet-950 text-violet-600 dark:text-violet-400",
+  },
+  {
+    id: "voice-clone" as DashboardTab,
+    icon: AudioLines,
+    title: "Voice Clone",
+    desc: "Clone your voice and use it across all speech features.",
+    color: "bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-400",
   },
   {
     id: "resume" as DashboardTab,
